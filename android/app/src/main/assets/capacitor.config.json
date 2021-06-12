@@ -1,0 +1,6 @@
+{
+	"appId": "id.shiorilabs.preflightx",
+	"appName": "preflightx",
+	"webDir": "out",
+	"bundledWebRuntime": false
+}
