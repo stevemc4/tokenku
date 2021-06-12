@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Router from 'next/router'
-import { Box, HStack, IconButton, Icon } from '@chakra-ui/react'
+import { Box, HStack, IconButton, Icon, theme } from '@chakra-ui/react'
 import { HiOutlineHome, HiOutlineSparkles, HiOutlineQrcode, HiOutlineBell, HiOutlineUser } from 'react-icons/hi'
+import { Capacitor } from '@capacitor/core'
+import { StatusBar } from '@capacitor/status-bar'
 
 interface Props {
   children: React.ReactElement;
 }
 
 const DefaultLayout = ({ children }: Props): React.ReactElement => {
+  useEffect(() => {
+    if (Capacitor.getPlatform() === 'android') {
+      StatusBar.setBackgroundColor({ color: theme.colors.gray[100] })
+    }
+  }, [])
+
   const handleNavigationButton = (target: string): void => {
     Router.push(target)
   }

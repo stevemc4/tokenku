@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Router from 'next/router'
 import { useEmblaCarousel } from 'embla-carousel/react'
-import { Box, Heading, Text, Button, Image } from '@chakra-ui/react'
+import { Box, Heading, Text, Button, Image, theme } from '@chakra-ui/react'
+import { Capacitor } from '@capacitor/core'
+import { StatusBar } from '@capacitor/status-bar'
 
 const Index = (): React.ReactElement => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'start'
   })
+
+  useEffect(() => {
+    if (Capacitor.getPlatform() === 'android') {
+      StatusBar.setBackgroundColor({ color: theme.colors.gray[100] })
+    }
+  }, [])
 
   const handleLearnMoreButton = (): void => {
     emblaApi?.scrollNext()
