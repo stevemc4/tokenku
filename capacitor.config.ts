@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli'
 
 const config: CapacitorConfig = {
-  appId: 'id.shiorilabs.preflightx',
-  appName: 'preflightx',
+  appId: 'id.shiorilabs.tokenku',
+  appName: 'Tokenku',
   webDir: 'out',
   bundledWebRuntime: false
 }

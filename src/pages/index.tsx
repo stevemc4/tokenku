@@ -1,14 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import Router from 'next/router'
 import { useEmblaCarousel } from 'embla-carousel/react'
-import { Box, Heading, Text, Button, Image } from '@chakra-ui/react'
+import { Box, Heading, Text, Button, Image, theme } from '@chakra-ui/react'
+import { Capacitor } from '@capacitor/core'
+import { StatusBar, Style } from '@capacitor/status-bar'
 
 const Index = (): React.ReactElement => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: 'start'
   })
 
+  useEffect(() => {
+    if (Capacitor.getPlatform() === 'android') {
+      StatusBar.setStyle({
+        style: Style.Light
+      })
+      StatusBar.setBackgroundColor({ color: theme.colors.gray[100] })
+    }
+  }, [])
+
   const handleLearnMoreButton = (): void => {
     emblaApi?.scrollNext()
+  }
+
+  const handleGetStartedButton = (): void => {
+    Router.replace('/home')
   }
 
   return (
@@ -23,7 +39,7 @@ const Index = (): React.ReactElement => {
             Shop like never before with Tokenku, a loyalty program made just for you!
           </Text>
           <Box mt="auto" display="flex" flexDir="column">
-            <Button colorScheme="teal" fontWeight="bold" variant="ghost" p="0" mb="2" justifyContent="flex-start">
+            <Button onClick={handleGetStartedButton} colorScheme="teal" fontWeight="bold" variant="ghost" p="0" mb="2" justifyContent="flex-start">
               Get Started
             </Button>
             <Button
@@ -75,7 +91,7 @@ const Index = (): React.ReactElement => {
             Let&apos;s get started, shall we?
           </Text>
           <Box mt="auto" display="flex" flexDir="column">
-            <Button colorScheme="teal" fontWeight="bold" variant="ghost" p="0" mb="2" justifyContent="flex-start">
+            <Button onClick={handleGetStartedButton} colorScheme="teal" fontWeight="bold" variant="ghost" p="0" mb="2" justifyContent="flex-start">
               Get Started
             </Button>
           </Box>
