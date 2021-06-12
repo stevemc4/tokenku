@@ -1,6 +1,21 @@
 import React, { useEffect } from 'react'
 import Router from 'next/router'
-import { Box, HStack, VStack, IconButton, Icon, theme } from '@chakra-ui/react'
+import {
+  Box,
+  HStack,
+  VStack,
+  IconButton,
+  Icon,
+  Drawer,
+  DrawerBody,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  useDisclosure,
+  Image,
+  Text,
+  theme
+} from '@chakra-ui/react'
 import { HiOutlineHome, HiOutlineSparkles, HiOutlineQrcode, HiOutlineBell, HiOutlineUser } from 'react-icons/hi'
 import { Capacitor } from '@capacitor/core'
 import { StatusBar, Style } from '@capacitor/status-bar'
@@ -10,6 +25,7 @@ interface Props {
 }
 
 const DefaultLayout = ({ children }: Props): React.ReactElement => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
   useEffect(() => {
     if (Capacitor.getPlatform() === 'android') {
       StatusBar.setStyle({
@@ -46,6 +62,7 @@ const DefaultLayout = ({ children }: Props): React.ReactElement => {
           icon={<Icon color="gray.600" w="6" h="6" as={HiOutlineSparkles} />}
         />
         <IconButton
+          onClick={onOpen}
           aria-label="Home"
           colorScheme="gray"
           variant="ghost" p="8"
@@ -66,6 +83,20 @@ const DefaultLayout = ({ children }: Props): React.ReactElement => {
           p="8" icon={<Icon color="gray.600" w="6" h="6" as={HiOutlineUser} />}
         />
       </HStack>
+      <Drawer isOpen={isOpen} onClose={onClose} placement="bottom">
+        <DrawerOverlay />
+        <DrawerContent borderRadius="8">
+          <DrawerHeader>
+            My Code
+          </DrawerHeader>
+          <DrawerBody>
+            <VStack>
+              <Image w="full" src="/img/shiori.svg" />
+              <Text>Give this code to the cashier</Text>
+            </VStack>
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </VStack>
   )
 }
