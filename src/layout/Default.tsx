@@ -3,7 +3,7 @@ import Router from 'next/router'
 import { Box, HStack, IconButton, Icon, theme } from '@chakra-ui/react'
 import { HiOutlineHome, HiOutlineSparkles, HiOutlineQrcode, HiOutlineBell, HiOutlineUser } from 'react-icons/hi'
 import { Capacitor } from '@capacitor/core'
-import { StatusBar } from '@capacitor/status-bar'
+import { StatusBar, Style } from '@capacitor/status-bar'
 
 interface Props {
   children: React.ReactElement;
@@ -12,6 +12,9 @@ interface Props {
 const DefaultLayout = ({ children }: Props): React.ReactElement => {
   useEffect(() => {
     if (Capacitor.getPlatform() === 'android') {
+      StatusBar.setStyle({
+        style: Style.Light
+      })
       StatusBar.setBackgroundColor({ color: theme.colors.gray[100] })
     }
   }, [])
