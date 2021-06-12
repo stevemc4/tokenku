@@ -1,4 +1,4 @@
-package id.shiorilabs.preflightx;
+package id.shiorilabs.tokenku;
 
 import com.getcapacitor.BridgeActivity;
 

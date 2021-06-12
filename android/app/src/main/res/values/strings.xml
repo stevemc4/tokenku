@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">preflightx</string>
-    <string name="title_activity_main">preflightx</string>
-    <string name="package_name">id.shiorilabs.preflightx</string>
-    <string name="custom_url_scheme">id.shiorilabs.preflightx</string>
+    <string name="app_name">tokenku</string>
+    <string name="title_activity_main">tokenku</string>
+    <string name="package_name">id.shiorilabs.tokenku</string>
+    <string name="custom_url_scheme">id.shiorilabs.tokenku</string>
 </resources>
